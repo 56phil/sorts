@@ -8,9 +8,10 @@
 #ifndef readin_hpp
 #define readin_hpp
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
+#include <unistd.h>
+#include "writeout.hpp"
 
 long *randomRead(std::string, long);
 

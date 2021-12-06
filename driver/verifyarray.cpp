@@ -7,9 +7,11 @@
 
 #include "verifyarray.hpp"
 
-bool verify(long *begin, long *end) {
-    while (++begin < end) {
+bool verify(long *lPtr, long *rPtr) {
+    long *begin(lPtr);
+    while (++begin < rPtr) {
         if (*(begin - 1) > *begin) {
+            std::cout << *(begin - 1) << ", " << *begin << std::endl;
             return false;
         }
     }

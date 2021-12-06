@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		316DCEBC275E941800F667D0 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 316DCEBA275E941800F667D0 /* functions.cpp */; };
 		31821A12275B0E6000F85B97 /* insertion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A10275B0E6000F85B97 /* insertion.cpp */; };
 		31821A1B275B117E00F85B97 /* verifyarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A13275B117E00F85B97 /* verifyarray.cpp */; };
 		31821A1C275B117E00F85B97 /* readin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A16275B117E00F85B97 /* readin.cpp */; };
 		31821A1D275B117E00F85B97 /* arrayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A17275B117E00F85B97 /* arrayout.cpp */; };
 		31821A1E275B117E00F85B97 /* writeout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A18275B117E00F85B97 /* writeout.cpp */; };
+		31A4E65E275BE9C9005F9792 /* shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31A4E65C275BE9C9005F9792 /* shell.cpp */; };
+		31B01A42275C7BF300C8E694 /* swap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B01A40275C7BF300C8E694 /* swap.cpp */; };
+		31B01A45275C7F1800C8E694 /* quick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B01A43275C7F1800C8E694 /* quick.cpp */; };
 		31C70634275B06EB00F3286A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31C70633275B06EB00F3286A /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		316DCEBA275E941800F667D0 /* functions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = functions.cpp; path = ../../headers/functions.cpp; sourceTree = "<group>"; };
+		316DCEBB275E941800F667D0 /* functions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = functions.hpp; path = ../../headers/functions.hpp; sourceTree = "<group>"; };
 		31821A10275B0E6000F85B97 /* insertion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = insertion.cpp; path = ../../algoritnms/insertion.cpp; sourceTree = "<group>"; };
 		31821A11275B0E6000F85B97 /* insertion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = insertion.hpp; path = ../../algoritnms/insertion.hpp; sourceTree = "<group>"; };
 		31821A13275B117E00F85B97 /* verifyarray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verifyarray.cpp; sourceTree = "<group>"; };
@@ -38,6 +44,12 @@
 		31821A18275B117E00F85B97 /* writeout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = writeout.cpp; sourceTree = "<group>"; };
 		31821A19275B117E00F85B97 /* readin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = readin.hpp; sourceTree = "<group>"; };
 		31821A1A275B117E00F85B97 /* writeout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = writeout.hpp; sourceTree = "<group>"; };
+		31A4E65C275BE9C9005F9792 /* shell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = shell.cpp; path = ../../algoritnms/shell.cpp; sourceTree = "<group>"; };
+		31A4E65D275BE9C9005F9792 /* shell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = shell.hpp; path = ../../algoritnms/shell.hpp; sourceTree = "<group>"; };
+		31B01A40275C7BF300C8E694 /* swap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = swap.cpp; path = ../../headers/swap.cpp; sourceTree = "<group>"; };
+		31B01A41275C7BF300C8E694 /* swap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = swap.hpp; path = ../../headers/swap.hpp; sourceTree = "<group>"; };
+		31B01A43275C7F1800C8E694 /* quick.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = quick.cpp; path = ../../algoritnms/quick.cpp; sourceTree = "<group>"; };
+		31B01A44275C7F1800C8E694 /* quick.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = quick.hpp; path = ../../algoritnms/quick.hpp; sourceTree = "<group>"; };
 		31C70630275B06EB00F3286A /* driver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = driver; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C70633275B06EB00F3286A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,15 +86,23 @@
 			children = (
 				31821A17275B117E00F85B97 /* arrayout.cpp */,
 				31821A14275B117E00F85B97 /* arrayout.hpp */,
+				31821A10275B0E6000F85B97 /* insertion.cpp */,
+				31821A11275B0E6000F85B97 /* insertion.hpp */,
+				31C70633275B06EB00F3286A /* main.cpp */,
+				316DCEBA275E941800F667D0 /* functions.cpp */,
+				316DCEBB275E941800F667D0 /* functions.hpp */,
+				31B01A43275C7F1800C8E694 /* quick.cpp */,
+				31B01A44275C7F1800C8E694 /* quick.hpp */,
 				31821A16275B117E00F85B97 /* readin.cpp */,
 				31821A19275B117E00F85B97 /* readin.hpp */,
+				31A4E65C275BE9C9005F9792 /* shell.cpp */,
+				31A4E65D275BE9C9005F9792 /* shell.hpp */,
+				31B01A40275C7BF300C8E694 /* swap.cpp */,
+				31B01A41275C7BF300C8E694 /* swap.hpp */,
 				31821A13275B117E00F85B97 /* verifyarray.cpp */,
 				31821A15275B117E00F85B97 /* verifyarray.hpp */,
 				31821A18275B117E00F85B97 /* writeout.cpp */,
 				31821A1A275B117E00F85B97 /* writeout.hpp */,
-				31C70633275B06EB00F3286A /* main.cpp */,
-				31821A10275B0E6000F85B97 /* insertion.cpp */,
-				31821A11275B0E6000F85B97 /* insertion.hpp */,
 			);
 			path = driver;
 			sourceTree = "<group>";
@@ -144,10 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A4E65E275BE9C9005F9792 /* shell.cpp in Sources */,
 				31821A1B275B117E00F85B97 /* verifyarray.cpp in Sources */,
 				31821A1D275B117E00F85B97 /* arrayout.cpp in Sources */,
 				31C70634275B06EB00F3286A /* main.cpp in Sources */,
+				31B01A42275C7BF300C8E694 /* swap.cpp in Sources */,
+				31B01A45275C7F1800C8E694 /* quick.cpp in Sources */,
 				31821A1C275B117E00F85B97 /* readin.cpp in Sources */,
+				316DCEBC275E941800F667D0 /* functions.cpp in Sources */,
 				31821A1E275B117E00F85B97 /* writeout.cpp in Sources */,
 				31821A12275B0E6000F85B97 /* insertion.cpp in Sources */,
 			);
@@ -215,6 +239,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"/Users/prh/Keepers/code/cpp/sorts/algorithms/**",
 					"/Users/prh/Keepers/code/cpp/sorts/headers/**",
+					"/Users/prh/boost_1_77_0/**",
 				);
 			};
 			name = Debug;
@@ -271,6 +296,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"/Users/prh/Keepers/code/cpp/sorts/algorithms/**",
 					"/Users/prh/Keepers/code/cpp/sorts/headers/**",
+					"/Users/prh/boost_1_77_0/**",
 				);
 			};
 			name = Release;

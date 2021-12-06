@@ -9,21 +9,27 @@
 
 long *randomRead(const std::string fn, const long nExperiments ) {
     
-    long *sample(new long[nExperiments]);
-    long *samplePtr (sample);
-    const long *samplePtrMax(samplePtr + nExperiments);
-    std::ifstream ifs;
+    if (access(fn.c_str(), R_OK) < 0) {
+        randomWrite(fn, nExperiments);
+    }
     
+    std::ifstream ifs;
     ifs.open (fn, std::ifstream::in);
     
     if (ifs.is_open()) {
+        long *sample(new long[nExperiments]);
+        long *samplePtr (sample);
+        const long *samplePtrMax(samplePtr + nExperiments);
         const int buffSize(2048);
         char buff[buffSize + 1];
-        while (ifs.getline(buff, buffSize) && samplePtr < samplePtrMax) {
+        while (ifs.getline(buff, buffSize) && samplePtr < samplePtrMax)
             *samplePtr++ = atol(buff);
-        }
         ifs.close();
+        if (samplePtr == samplePtrMax) {
+            return sample;
+        }
     }
     
-    return sample;
+    return nullptr;
+    
 }
