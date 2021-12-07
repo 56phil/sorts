@@ -6,15 +6,18 @@
 //
 
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 #include <vector>
 #include "arrayout.hpp"
-#include "functions.hpp"
 #include "readin.hpp"
 #include "verifyarray.hpp"
 
+#include "bubble.hpp"
 #include "insertion.hpp"
+#include "merge.hpp"
 #include "quick.hpp"
+#include "selection.hpp"
 #include "shell.hpp"
 
 using namespace std::chrono;
@@ -22,23 +25,39 @@ using namespace std::chrono;
 struct sortStruct {
     std::string name;
     std::function<void(long*, long*)> fn;
+    long time;
 };
 
 int main(int argc, const char * argv[]) {
     std::vector<sortStruct> fns;
+    
+    sortStruct bubbleSort;
+    bubbleSort.name = "Bubble";
+    bubbleSort.fn = bubble;
+    fns.emplace_back(bubbleSort);
     
     sortStruct insertionSort;
     insertionSort.name = "Insertion";
     insertionSort.fn = insertion;
     fns.emplace_back(insertionSort);
     
+    sortStruct mergeSort    ;
+    mergeSort.name = "Merge";
+    mergeSort.fn = mSort;
+    fns.emplace_back(mergeSort);
+    
     sortStruct quickSort;
     quickSort.name = "Quick";
     quickSort.fn = quick;
     fns.emplace_back(quickSort);
     
+    sortStruct selectionSort;
+    selectionSort.name = "Selection";
+    selectionSort.fn = selection;
+    fns.emplace_back(selectionSort);
+    
     sortStruct shellSort;
-    shellSort.name = "shell";
+    shellSort.name = "Shell";
     shellSort.fn = shell;
     fns.emplace_back(shellSort);
     
@@ -65,17 +84,16 @@ int main(int argc, const char * argv[]) {
             auto stop = high_resolution_clock::now();
             if (!verify(sample, samplePtrMax)) {
                 printArray(sample, samplePtrMax, sampleSize);
-                std::cout << "\n\t" << f.name << "ALGORITH FAILED" << std::endl;
+                std::cout << "\n\t" << f.name << " algorithm needs work." << std::endl;
                 completionCode |= 1;
             }
             delete [] sample;
             auto duration = duration_cast<microseconds>(stop - start);
-            std::cout << f.name << " used " << duration.count() << " µseconds" << std::endl;
+            f.time = duration.count();
+            std::cout << std::right << std::setw(11) << f.time  << " µseconds used by "
+            << f.name << " algorithm." << std::endl;
         }
     }
         
     return completionCode;
 }
-
-/*
- */

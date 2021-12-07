@@ -10,7 +10,7 @@
 void randomWrite(const std::string fn, const long nExperiments ) {
     
     std::default_random_engine generator;
-    std::uniform_int_distribution<long> distribution(0, 100000);
+    std::uniform_int_distribution<long> distribution(0, 99999999);
     std::ofstream ofs;
      
     ofs.open (fn, std::ofstream::out);
