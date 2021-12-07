@@ -11,6 +11,6 @@
 #include <fstream>
 #include <iostream>
 
-void printArray(long *, long *, long);
+void printArray(long *, long *);
 
 #endif /* arrayout_hpp */

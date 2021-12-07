@@ -7,9 +7,8 @@
 
 #include "arrayout.hpp"
 
-void printArray(long *arrPtr, long *arrPtrMax, long n) {
-    int i(0);
-    for (long *ptr(arrPtr); ptr < arrPtrMax && n > ++i; ptr++) {
+void printArray(long *arrPtr, long *arrPtrMax) {
+    for (long *ptr(arrPtr); ptr < arrPtrMax; ptr++) {
         std::cout << *ptr << " ";
     }
     std::cout << std::endl;

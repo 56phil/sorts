@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31539B50275F7DE200CED899 /* heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31539B4E275F7DE200CED899 /* heap.cpp */; };
 		316DCEBF275ECDE000F667D0 /* selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 316DCEBD275ECDE000F667D0 /* selection.cpp */; };
 		31821A12275B0E6000F85B97 /* insertion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A10275B0E6000F85B97 /* insertion.cpp */; };
 		31821A1B275B117E00F85B97 /* verifyarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A13275B117E00F85B97 /* verifyarray.cpp */; };
@@ -34,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31539B4E275F7DE200CED899 /* heap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = heap.cpp; path = ../../algoritnms/heap.cpp; sourceTree = "<group>"; };
+		31539B4F275F7DE200CED899 /* heap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = heap.hpp; path = ../../algoritnms/heap.hpp; sourceTree = "<group>"; };
 		316DCEBD275ECDE000F667D0 /* selection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = selection.cpp; path = ../../algoritnms/selection.cpp; sourceTree = "<group>"; };
 		316DCEBE275ECDE000F667D0 /* selection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = selection.hpp; path = ../../algoritnms/selection.hpp; sourceTree = "<group>"; };
 		31821A10275B0E6000F85B97 /* insertion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = insertion.cpp; path = ../../algoritnms/insertion.cpp; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				31821A14275B117E00F85B97 /* arrayout.hpp */,
 				31B570A5275ED4C500BA91FC /* bubble.cpp */,
 				31B570A6275ED4C500BA91FC /* bubble.hpp */,
+				31539B4E275F7DE200CED899 /* heap.cpp */,
+				31539B4F275F7DE200CED899 /* heap.hpp */,
 				31821A10275B0E6000F85B97 /* insertion.cpp */,
 				31821A11275B0E6000F85B97 /* insertion.hpp */,
 				31C70633275B06EB00F3286A /* main.cpp */,
@@ -181,6 +186,7 @@
 				31B570AD275EE38A00BA91FC /* merge.cpp in Sources */,
 				31C70634275B06EB00F3286A /* main.cpp in Sources */,
 				31B01A42275C7BF300C8E694 /* swap.cpp in Sources */,
+				31539B50275F7DE200CED899 /* heap.cpp in Sources */,
 				31B01A45275C7F1800C8E694 /* quick.cpp in Sources */,
 				316DCEBF275ECDE000F667D0 /* selection.cpp in Sources */,
 				31821A1C275B117E00F85B97 /* readin.cpp in Sources */,

@@ -9,6 +9,8 @@
 #define verifyarray_hpp
 
 #include <iostream>
+#include "arrayout.hpp"
+#include "readin.hpp"
 
 bool verify(long *, long *);
 

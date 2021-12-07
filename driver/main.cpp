@@ -36,6 +36,11 @@ int main(int argc, const char * argv[]) {
     bubbleSort.fn = bubble;
     fns.emplace_back(bubbleSort);
     
+    sortStruct heapSort;
+    heapSort.name = "Heap";
+    heapSort.fn = insertion;
+    fns.emplace_back(heapSort);
+    
     sortStruct insertionSort;
     insertionSort.name = "Insertion";
     insertionSort.fn = insertion;
@@ -74,26 +79,29 @@ int main(int argc, const char * argv[]) {
     std::cin >> n;
     std::cout << std::endl;
     const long sampleSize(n);
+    long *oPtr = randomRead(fn, sampleSize);
+    long *oPtrMax(oPtr + sampleSize);
+    long *wPtr(new long[sampleSize]);
+    long *wPtrMax(wPtr + sampleSize);
     
     for (auto f : fns) {
-        long *sample = randomRead(fn, sampleSize);
-        if (sample) {
-            long *samplePtrMax(sample + sampleSize);
-            auto start = high_resolution_clock::now();
-            f.fn(sample, samplePtrMax);
-            auto stop = high_resolution_clock::now();
-            if (!verify(sample, samplePtrMax)) {
-                printArray(sample, samplePtrMax, sampleSize);
-                std::cout << "\n\t" << f.name << " algorithm needs work." << std::endl;
-                completionCode |= 1;
-            }
-            delete [] sample;
-            auto duration = duration_cast<microseconds>(stop - start);
-            f.time = duration.count();
-            std::cout << std::right << std::setw(11) << f.time  << " µseconds used by "
-            << f.name << " algorithm." << std::endl;
+        memcpy(wPtr, oPtr, sampleSize);
+        auto start = high_resolution_clock::now();
+        f.fn(wPtr, wPtrMax);
+        auto stop = high_resolution_clock::now();
+        if (!verify(wPtr, wPtrMax)) {
+            printArray(wPtr, wPtrMax);
+            printArray(oPtr, oPtrMax);
+            std::cout << "\n\t" << f.name << " algorithm needs work.\n\n";
+            completionCode++;
         }
+        auto duration = duration_cast<microseconds>(stop - start);
+        f.time = duration.count();
+        std::cout << std::right << std::setw(11) << f.time  << " µseconds used by "
+        << f.name << " algorithm." << std::endl;
     }
+    delete [] oPtr;
+    delete [] wPtr;
         
     return completionCode;
 }

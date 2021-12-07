@@ -8,10 +8,9 @@
 #include "verifyarray.hpp"
 
 bool verify(long *lPtr, long *rPtr) {
-    long *begin(lPtr);
-    while (++begin < rPtr) {
-        if (*(begin - 1) > *begin) {
-            std::cout << *(begin - 1) << ", " << *begin << std::endl;
+    long *wPtr(lPtr);
+    while (++wPtr < rPtr) {
+        if (*(wPtr - 1) > *wPtr) {
             return false;
         }
     }

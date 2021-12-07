@@ -8,29 +8,29 @@
 #include "merge.hpp"
 
 void merge(long * lPtr, long *mPtr, long *rPtr) {
-    long lSiz(mPtr - lPtr + 1);
+    long lSiz(mPtr - lPtr);
     long rSiz(rPtr - mPtr);
     
-    long *wPtr0(new long [lSiz]);
-    long *wPtr1(new long [rSiz]);
+    long *wPtrL(new long [lSiz]);
+    long *wPtrR(new long [rSiz]);
     
-    memcpy(wPtr0, lPtr, lSiz);
-    memcpy(wPtr1, mPtr, rSiz);
+    memcpy(wPtrL, lPtr, lSiz);
+    memcpy(wPtrR, mPtr, rSiz);
     
-    long *wPtr0Max(wPtr0 + lSiz);
-    long *wPtr1Max(wPtr1 + rSiz);
-    while (lPtr < rPtr && wPtr0 < wPtr0Max && wPtr1 < wPtr1Max) {
-        if (*wPtr0 < *wPtr1) {
-            *lPtr++ = *wPtr0++;
+    long *wPtr0Max(wPtrL + lSiz);
+    long *wPtr1Max(wPtrR + rSiz);
+    while (wPtrL < wPtr0Max && wPtrR < wPtr1Max) {
+        if (*wPtrL <= *wPtrR) {
+            *lPtr++ = *wPtrL++;
         } else {
-            *lPtr++ = *wPtr1++;
+            *lPtr++ = *wPtrR++;
         }
     }
-    while (wPtr0 < wPtr0Max) {
-        *lPtr++ = *wPtr0++;
+    while (wPtrL < wPtr0Max) {
+        *lPtr++ = *wPtrL++;
     }
-    while (wPtr1 < wPtr1Max) {
-        *lPtr++ = *wPtr1++;
+    while (wPtrR < wPtr1Max) {
+        *lPtr++ = *wPtrR++;
     }
 }
 
