@@ -17,19 +17,21 @@ void merge(long * lPtr, long *mPtr, long *rPtr) {
     memcpy(wPtrL, lPtr, lSiz);
     memcpy(wPtrR, mPtr, rSiz);
     
-    long *wPtr0Max(wPtrL + lSiz);
-    long *wPtr1Max(wPtrR + rSiz);
-    while (wPtrL < wPtr0Max && wPtrR < wPtr1Max) {
-        if (*wPtrL <= *wPtrR) {
+    long *wPtrLMax(wPtrL + lSiz);
+    long *wPtrRMax(wPtrR + rSiz);
+    
+    while (wPtrL < wPtrLMax && wPtrR < wPtrRMax) {
+        if (*wPtrL <= *wPtrR)
             *lPtr++ = *wPtrL++;
-        } else {
+        else
             *lPtr++ = *wPtrR++;
-        }
     }
-    while (wPtrL < wPtr0Max) {
+    
+    while (wPtrL < wPtrLMax) {
         *lPtr++ = *wPtrL++;
     }
-    while (wPtrR < wPtr1Max) {
+    
+    while (wPtrR < wPtrRMax) {
         *lPtr++ = *wPtrR++;
     }
 }
