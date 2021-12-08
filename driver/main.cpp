@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     heapSort.name = "Heap";
     heapSort.fn = insertion;
     fns.emplace_back(heapSort);
-    
+
     sortStruct insertionSort;
     insertionSort.name = "Insertion";
     insertionSort.fn = insertion;
@@ -79,7 +79,12 @@ int main(int argc, const char * argv[]) {
     std::cin >> n;
     std::cout << std::endl;
     const long sampleSize(n);
+    
     long *oPtr = randomRead(fn, sampleSize);
+    if (!oPtr) {
+        exit(42);
+    }
+    
     long *oPtrMax(oPtr + sampleSize);
     long *wPtr(new long[sampleSize]);
     long *wPtrMax(wPtr + sampleSize);
@@ -91,6 +96,7 @@ int main(int argc, const char * argv[]) {
         auto stop = high_resolution_clock::now();
         if (!verify(wPtr, wPtrMax)) {
             printArray(wPtr, wPtrMax);
+            std::cout << "\n\n===================================================\n\n";
             printArray(oPtr, oPtrMax);
             std::cout << "\n\t" << f.name << " algorithm needs work.\n\n";
             completionCode++;
@@ -102,6 +108,8 @@ int main(int argc, const char * argv[]) {
     }
     delete [] oPtr;
     delete [] wPtr;
+    
+    std::cout << std::endl;
         
     return completionCode;
 }

@@ -7,8 +7,8 @@
 
 #include "merge.hpp"
 
-void merge(long * lPtr, long *mPtr, long *rPtr) {
-    long lSiz(mPtr - lPtr);
+void merge(long *lPtr, long *mPtr, long *rPtr) {
+    long lSiz(mPtr - lPtr + 1);
     long rSiz(rPtr - mPtr);
     
     long *wPtrL(new long [lSiz]);

@@ -8,8 +8,9 @@
 #include "arrayout.hpp"
 
 void printArray(long *arrPtr, long *arrPtrMax) {
-    for (long *ptr(arrPtr); ptr < arrPtrMax; ptr++) {
-        std::cout << *ptr << " ";
+    int i(60);
+    for (long *ptr(arrPtr); ptr < arrPtrMax && i; ptr++, --i) {
+        std::cout << std::right << std::setw(24) << *ptr;
     }
     std::cout << std::endl;
 }

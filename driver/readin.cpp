@@ -27,9 +27,11 @@ long *randomRead(const std::string fn, const long nExperiments ) {
         ifs.close();
         if (samplePtr == samplePtrMax) {
             return sample;
+        } else {
+            randomWrite(fn, nExperiments);
+            return randomRead(fn, nExperiments);
         }
     }
     
     return nullptr;
-    
 }

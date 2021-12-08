@@ -10,12 +10,13 @@
 void randomWrite(const std::string fn, const long nExperiments ) {
     
     std::default_random_engine generator;
-    std::uniform_int_distribution<long> distribution(0, 99999999);
+    std::uniform_int_distribution<long> distribution(std::numeric_limits<long>::min(),
+                                                     std::numeric_limits<long>::max());
     std::ofstream ofs;
      
     ofs.open (fn, std::ofstream::out);
     
-    for (int i(0); i < nExperiments; ++i) {
+    for (long i(nExperiments); i; --i) {
         long n(distribution(generator));
         ofs << n << '\n';
     }
