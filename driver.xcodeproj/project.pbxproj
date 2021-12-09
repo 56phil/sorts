@@ -20,6 +20,7 @@
 		31B570A7275ED4C500BA91FC /* bubble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B570A5275ED4C500BA91FC /* bubble.cpp */; };
 		31B570AD275EE38A00BA91FC /* merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B570AC275EE38A00BA91FC /* merge.cpp */; };
 		31C70634275B06EB00F3286A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31C70633275B06EB00F3286A /* main.cpp */; };
+		31D57545276196D80021A4FF /* formattime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31D57543276196D80021A4FF /* formattime.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,8 @@
 		31B570AC275EE38A00BA91FC /* merge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = merge.cpp; sourceTree = "<group>"; };
 		31C70630275B06EB00F3286A /* driver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = driver; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C70633275B06EB00F3286A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		31D57543276196D80021A4FF /* formattime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = formattime.cpp; path = ../../headers/formattime.cpp; sourceTree = "<group>"; };
+		31D57544276196D80021A4FF /* formattime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = formattime.hpp; path = ../../headers/formattime.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				31821A14275B117E00F85B97 /* arrayout.hpp */,
 				31B570A5275ED4C500BA91FC /* bubble.cpp */,
 				31B570A6275ED4C500BA91FC /* bubble.hpp */,
+				31D57543276196D80021A4FF /* formattime.cpp */,
+				31D57544276196D80021A4FF /* formattime.hpp */,
 				31539B4E275F7DE200CED899 /* heap.cpp */,
 				31539B4F275F7DE200CED899 /* heap.hpp */,
 				31821A10275B0E6000F85B97 /* insertion.cpp */,
@@ -180,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A4E65E275BE9C9005F9792 /* shell.cpp in Sources */,
+				31D57545276196D80021A4FF /* formattime.cpp in Sources */,
 				31B570A7275ED4C500BA91FC /* bubble.cpp in Sources */,
 				31821A1B275B117E00F85B97 /* verifyarray.cpp in Sources */,
 				31821A1D275B117E00F85B97 /* arrayout.cpp in Sources */,

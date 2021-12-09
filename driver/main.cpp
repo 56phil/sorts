@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 #include "arrayout.hpp"
+#include "formattime.hpp"
 #include "readin.hpp"
 #include "verifyarray.hpp"
 
@@ -27,6 +28,8 @@ struct sortStruct {
     std::function<void(long*, long*)> fn;
     long time;
 };
+
+static void errorFunction(int &, const sortStruct &, long *, long *, long *, long *);
 
 int main(int argc, const char * argv[]) {
     std::vector<sortStruct> fns;
@@ -81,9 +84,8 @@ int main(int argc, const char * argv[]) {
     const long sampleSize(n);
     
     long *oPtr = randomRead(fn, sampleSize);
-    if (!oPtr) {
+    if (!oPtr)
         exit(42);
-    }
     
     long *oPtrMax(oPtr + sampleSize);
     long *wPtr(new long[sampleSize]);
@@ -91,20 +93,17 @@ int main(int argc, const char * argv[]) {
     
     for (auto f : fns) {
         memcpy(wPtr, oPtr, sampleSize);
+        std::cout << formatTime(false, true) << ' ' << f.name << '\n';
         auto start = high_resolution_clock::now();
         f.fn(wPtr, wPtrMax);
         auto stop = high_resolution_clock::now();
-        if (!verify(wPtr, wPtrMax)) {
-            printArray(wPtr, wPtrMax);
-            std::cout << "\n\n===================================================\n\n";
-            printArray(oPtr, oPtrMax);
-            std::cout << "\n\t" << f.name << " algorithm needs work.\n\n";
-            completionCode++;
-        }
+        if (!verify(wPtr, wPtrMax)) 
+            errorFunction(completionCode, f, oPtr, oPtrMax, wPtr, wPtrMax);
+        
         auto duration = duration_cast<microseconds>(stop - start);
         f.time = duration.count();
-        std::cout << std::right << std::setw(11) << f.time  << " µseconds used by "
-        << f.name << " algorithm." << std::endl;
+        std::cout << formatTime(false, true) << std::right << std::setw(11) << f.time  << " µseconds used by "
+        << f.name << ".\n\n";
     }
     delete [] oPtr;
     delete [] wPtr;
@@ -112,4 +111,13 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl;
         
     return completionCode;
+}
+
+static void errorFunction(int &completionCode, const sortStruct &f, long *oPtr, long *oPtrMax,
+                      long *wPtr, long *wPtrMax) {
+    printArray(wPtr, wPtrMax);
+    std::cout << "\n\n===================================================\n\n";
+    printArray(oPtr, oPtrMax);
+    std::cout << "\n\t" << f.name << " algorithm needs work.\n\n";
+    completionCode++;
 }
