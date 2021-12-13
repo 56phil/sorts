@@ -9,9 +9,9 @@
 #define verifyarray_hpp
 
 #include <iostream>
+#include <vector>
 #include "arrayout.hpp"
 #include "readin.hpp"
 
-bool verify(long *, long *);
-
+bool verify(std::vector<long>, std::vector<long>);
 #endif /* verifyarray_hpp */

@@ -9,8 +9,10 @@
 #define merge_hpp
 
 #include <cstring>
+#include <vector>
 
-void merge(long *, long *, long *);
-void mSort(long *, long *);
+//static void merge(long *, long *, long *);
+void mSort(std::vector<long>&);
+void merge(std::vector<long>&, std::vector<long>, std::vector<long>);
 
 #endif /* merge_hpp */

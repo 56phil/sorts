@@ -12,6 +12,7 @@
 #include <fstream>
 #include <limits>
 #include <random>
-void randomWrite(const std::string, const long);
+#include <vector>
+void randomFill(long, std::vector<long> &);
 
 #endif /* writeout_hpp */

@@ -11,113 +11,151 @@
 #include <vector>
 #include "arrayout.hpp"
 #include "formattime.hpp"
-#include "readin.hpp"
 #include "verifyarray.hpp"
 
 #include "bubble.hpp"
+#include "heap.hpp"
 #include "insertion.hpp"
 #include "merge.hpp"
 #include "quick.hpp"
 #include "selection.hpp"
 #include "shell.hpp"
+#include "stl.hpp"
 
 using namespace std::chrono;
 
-struct sortStruct {
-    std::string name;
-    std::function<void(long*, long*)> fn;
+struct sortMetrics {
+    bool error;
     long time;
+    long sampleSize;
 };
 
-static void errorFunction(int &, const sortStruct &, long *, long *, long *, long *);
+struct sortStruct {
+    std::string name;
+    std::function<void(std::vector<long> &)> fn;
+    std::vector<sortMetrics> runData;
+};
+
+static void errorFunction(int &, std::vector<long>, std::vector<long>);
+static void copyVector(std::vector<long> &, std::vector<long> &);
 
 int main(int argc, const char * argv[]) {
     std::vector<sortStruct> fns;
+    fns.clear();
     
     sortStruct bubbleSort;
     bubbleSort.name = "Bubble";
-    bubbleSort.fn = bubble;
-    fns.emplace_back(bubbleSort);
-    
+    bubbleSort.fn = bSort;
+    bubbleSort.runData.clear();
+//    fns.emplace_back(bubbleSort);
+
     sortStruct heapSort;
     heapSort.name = "Heap";
-    heapSort.fn = insertion;
-    fns.emplace_back(heapSort);
-
+    heapSort.fn = heap;
+    heapSort.runData.clear();
+//    fns.emplace_back(heapSort);
+    
     sortStruct insertionSort;
     insertionSort.name = "Insertion";
     insertionSort.fn = insertion;
-    fns.emplace_back(insertionSort);
+    insertionSort.runData.clear();
+//    fns.emplace_back(insertionSort);
     
-    sortStruct mergeSort    ;
+    sortStruct mergeSort;
     mergeSort.name = "Merge";
     mergeSort.fn = mSort;
+    mergeSort.runData.clear();
     fns.emplace_back(mergeSort);
     
     sortStruct quickSort;
     quickSort.name = "Quick";
-    quickSort.fn = quick;
-    fns.emplace_back(quickSort);
+    quickSort.fn = qSort;
+    quickSort.runData.clear();
+//    fns.emplace_back(quickSort);
     
     sortStruct selectionSort;
     selectionSort.name = "Selection";
     selectionSort.fn = selection;
-    fns.emplace_back(selectionSort);
+    selectionSort.runData.clear();
+//    fns.emplace_back(selectionSort);
     
     sortStruct shellSort;
     shellSort.name = "Shell";
     shellSort.fn = shell;
-    fns.emplace_back(shellSort);
+    shellSort.runData.clear();
+//    fns.emplace_back(shellSort);
+    
+    sortStruct stlSort;
+    stlSort.name = "STL";
+    stlSort.fn = stl;
+    stlSort.runData.clear();
+//    fns.emplace_back(stlSort);
     
     int completionCode(0);
-    long n;
-    std::string filename("");
+    long sampleSizeMax(2 << 4);
     
-    std::cout << "Enter file name: ";
-    std::cin >> filename;
-    std::cout << std::endl;
-    const std::string fn("/Users/prh/Keepers/code/cpp/sorts/" + filename);
+    std::vector<long> orginalCopy;
+    std::vector<long> workCopy;
+    std::vector<long> checkCopy;
     
-    std::cout << "Enter sample size: ";
-    std::cin >> n;
-    std::cout << std::endl;
-    const long sampleSize(n);
-    
-    long *oPtr = randomRead(fn, sampleSize);
-    if (!oPtr)
-        exit(42);
-    
-    long *oPtrMax(oPtr + sampleSize);
-    long *wPtr(new long[sampleSize]);
-    long *wPtrMax(wPtr + sampleSize);
+    for (long sampleSize(4); sampleSize < sampleSizeMax; (sampleSize <<= 1) |= 1) {
+        std::cout << formatTime(true, true) << " n: " << sampleSize
+        << " ----------\n";
+        randomFill(sampleSize, orginalCopy);
+        copyVector(checkCopy, orginalCopy);
+        std::sort(checkCopy.begin(), checkCopy.end());
+        for (auto &f : fns) {
+            copyVector(workCopy, orginalCopy);
+            std::cout << formatTime(false, true) << ' ' << f.name << ":\n";
+            auto start = high_resolution_clock::now();
+            f.fn(workCopy);
+            auto stop = high_resolution_clock::now();
+            long duration = duration_cast<microseconds>(stop - start).count();
+            sortMetrics tm;
+            tm.error = verify(workCopy, checkCopy);
+            tm.time = duration;
+            tm.sampleSize = sampleSize;
+            if (!tm.error)
+                errorFunction(completionCode, workCopy, orginalCopy);
+            f.runData.emplace_back(tm);
+            std::cout << formatTime(false, true) << std::right << std::setw(11)
+            << tm.time << " µs used by " << f.name << ".\n\n";
+        } // function loop
+    } // sample size loop
     
     for (auto f : fns) {
-        memcpy(wPtr, oPtr, sampleSize);
-        std::cout << formatTime(false, true) << ' ' << f.name << '\n';
-        auto start = high_resolution_clock::now();
-        f.fn(wPtr, wPtrMax);
-        auto stop = high_resolution_clock::now();
-        if (!verify(wPtr, wPtrMax)) 
-            errorFunction(completionCode, f, oPtr, oPtrMax, wPtr, wPtrMax);
-        
-        auto duration = duration_cast<microseconds>(stop - start);
-        f.time = duration.count();
-        std::cout << formatTime(false, true) << std::right << std::setw(11) << f.time  << " µseconds used by "
-        << f.name << ".\n\n";
+        std::cout << '\n' << f.name << " -\n";
+        for (auto d : f.runData)
+            std::cout << std::right << std::setw(12) << d.sampleSize
+            << std::right << std::setw(14) << d.time << (d.error ? ' ' : '*') << '\n';
+        std::cout << '\n';
     }
-    delete [] oPtr;
-    delete [] wPtr;
-    
     std::cout << std::endl;
-        
+    
     return completionCode;
 }
 
-static void errorFunction(int &completionCode, const sortStruct &f, long *oPtr, long *oPtrMax,
-                      long *wPtr, long *wPtrMax) {
-    printArray(wPtr, wPtrMax);
-    std::cout << "\n\n===================================================\n\n";
-    printArray(oPtr, oPtrMax);
-    std::cout << "\n\t" << f.name << " algorithm needs work.\n\n";
+static void errorFunction(int &completionCode, std::vector<long>wc,
+                          std::vector<long>oc) {
     completionCode++;
+    int n(0), w(22);
+    
+    auto itw(wc.begin());
+    auto ito(oc.begin());
+    
+    std::cout << std::right << std::setw(4) << "n"
+    << std::right << std::setw(w) << "original"
+    << std::right << std::setw(w) << "result" << '\n';
+    while (itw != wc.end() && ito != oc.end() && n < 33) {
+        std::cout << std::right << std::setw(4) << ++n
+        << std::right << std::setw(w) << *ito++
+        << std::right << std::setw(w) << *itw++ << '\n';
+        
+    }
+}
+
+void copyVector(std::vector<long> &dest, std::vector<long> &source) {
+    dest.clear();
+    while (dest.size() < source.size())
+        dest.push_back(source[dest.size()]);
 }

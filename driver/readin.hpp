@@ -11,8 +11,9 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
+#include <vector>
 #include "writeout.hpp"
 
-long *randomRead(std::string, long);
+void randomRead(long, std::vector<long>);
 
 #endif /* readin_hpp */

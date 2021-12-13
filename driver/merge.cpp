@@ -7,43 +7,34 @@
 
 #include "merge.hpp"
 
-void merge(long *lPtr, long *mPtr, long *rPtr) {
-    long lSiz(mPtr - lPtr + 1);
-    long rSiz(rPtr - mPtr);
-    
-    long *wPtrL(new long [lSiz]);
-    long *wPtrR(new long [rSiz]);
-    
-    memcpy(wPtrL, lPtr, lSiz);
-    memcpy(wPtrR, mPtr, rSiz);
-    
-    long *wPtrLMax(wPtrL + lSiz);
-    long *wPtrRMax(wPtrR + rSiz);
-    
-    while (wPtrL < wPtrLMax && wPtrR < wPtrRMax) {
-        if (*wPtrL <= *wPtrR)
-            *lPtr++ = *wPtrL++;
+void merge(std::vector<long> &v, std::vector<long> v1, std::vector<long> v2) {
+    v.clear();
+    auto it1(v1.begin()), it2(v2.begin());
+    while (it1 != v1.end() && it2 != v2.end())
+        if (*it1 <= *it2)
+            v.push_back(*it1++);
         else
-            *lPtr++ = *wPtrR++;
-    }
+            v.push_back(*it2++);
     
-    while (wPtrL < wPtrLMax) {
-        *lPtr++ = *wPtrL++;
-    }
+    while (it1 != v1.end())
+        v.push_back(*it1++);
     
-    while (wPtrR < wPtrRMax) {
-        *lPtr++ = *wPtrR++;
-    }
+    while (it2 != v2.end())
+        v.push_back(*it2++);
+    
 }
 
-void mSort(long *lPtr, long *rPtr) {
-    if (lPtr >= rPtr) {
-        return;
+void mSort(std::vector<long> &v) {
+    if (v.size() > 1) {
+        std::vector<long> v1;
+        std::vector<long> v2;
+        auto mp(v.size() >> 1);
+        for (long i(0); i < mp; i++)
+            v1.push_back(v[i]);
+        for (long i(0); i < v.size() - mp; i++)
+            v2.push_back(v[mp + i]);
+        mSort(v1);
+        mSort(v2);
+        merge(v, v1, v2);
     }
-    
-    long *mPtr(lPtr + ((rPtr - lPtr) >> 1));
-    
-    mSort(lPtr, mPtr);
-    mSort(mPtr + 1, rPtr);
-    merge(lPtr, mPtr, rPtr);
 }
