@@ -47,19 +47,19 @@ int main(int argc, const char * argv[]) {
     bubbleSort.name = "Bubble";
     bubbleSort.fn = bSort;
     bubbleSort.runData.clear();
-//    fns.emplace_back(bubbleSort);
+    fns.emplace_back(bubbleSort);
 
     sortStruct heapSort;
     heapSort.name = "Heap";
     heapSort.fn = heap;
     heapSort.runData.clear();
-//    fns.emplace_back(heapSort);
+    fns.emplace_back(heapSort);
     
     sortStruct insertionSort;
     insertionSort.name = "Insertion";
     insertionSort.fn = insertion;
     insertionSort.runData.clear();
-//    fns.emplace_back(insertionSort);
+    fns.emplace_back(insertionSort);
     
     sortStruct mergeSort;
     mergeSort.name = "Merge";
@@ -71,34 +71,34 @@ int main(int argc, const char * argv[]) {
     quickSort.name = "Quick";
     quickSort.fn = qSort;
     quickSort.runData.clear();
-//    fns.emplace_back(quickSort);
+    fns.emplace_back(quickSort);
     
     sortStruct selectionSort;
     selectionSort.name = "Selection";
     selectionSort.fn = selection;
     selectionSort.runData.clear();
-//    fns.emplace_back(selectionSort);
+    fns.emplace_back(selectionSort);
     
     sortStruct shellSort;
     shellSort.name = "Shell";
     shellSort.fn = shell;
     shellSort.runData.clear();
-//    fns.emplace_back(shellSort);
+    fns.emplace_back(shellSort);
     
     sortStruct stlSort;
     stlSort.name = "STL";
     stlSort.fn = stl;
     stlSort.runData.clear();
-//    fns.emplace_back(stlSort);
+    fns.emplace_back(stlSort);
     
     int completionCode(0);
-    long sampleSizeMax(2 << 4);
+    long sampleSizeMax(2 << 13);
     
     std::vector<long> orginalCopy;
     std::vector<long> workCopy;
     std::vector<long> checkCopy;
     
-    for (long sampleSize(4); sampleSize < sampleSizeMax; (sampleSize <<= 1) |= 1) {
+    for (long sampleSize(31); sampleSize < sampleSizeMax; (sampleSize <<= 1) |= 1) {
         std::cout << formatTime(true, true) << " n: " << sampleSize
         << " ----------\n";
         randomFill(sampleSize, orginalCopy);
