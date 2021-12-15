@@ -21,6 +21,7 @@
 		31B570AD275EE38A00BA91FC /* merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B570AC275EE38A00BA91FC /* merge.cpp */; };
 		31C70634275B06EB00F3286A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31C70633275B06EB00F3286A /* main.cpp */; };
 		31D57545276196D80021A4FF /* formattime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31D57543276196D80021A4FF /* formattime.cpp */; };
+		31FB8F042768C09400FA8E2E /* radixsort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31FB8F022768C09400FA8E2E /* radixsort.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,8 @@
 		31C70633275B06EB00F3286A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		31D57543276196D80021A4FF /* formattime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = formattime.cpp; path = ../../headers/formattime.cpp; sourceTree = "<group>"; };
 		31D57544276196D80021A4FF /* formattime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = formattime.hpp; path = ../../headers/formattime.hpp; sourceTree = "<group>"; };
+		31FB8F022768C09400FA8E2E /* radixsort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = radixsort.cpp; path = ../../algoritnms/radixsort.cpp; sourceTree = "<group>"; };
+		31FB8F032768C09400FA8E2E /* radixsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = radixsort.hpp; path = ../../algoritnms/radixsort.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				31821A10275B0E6000F85B97 /* insertion.cpp */,
 				31821A11275B0E6000F85B97 /* insertion.hpp */,
 				31C70633275B06EB00F3286A /* main.cpp */,
+				31FB8F022768C09400FA8E2E /* radixsort.cpp */,
+				31FB8F032768C09400FA8E2E /* radixsort.hpp */,
 				315AB89A27656A0300BE3038 /* stl.cpp */,
 				315AB89B27656A0300BE3038 /* stl.hpp */,
 				31B570AC275EE38A00BA91FC /* merge.cpp */,
@@ -192,6 +197,7 @@
 				31B570AD275EE38A00BA91FC /* merge.cpp in Sources */,
 				31C70634275B06EB00F3286A /* main.cpp in Sources */,
 				315AB89C27656A0300BE3038 /* stl.cpp in Sources */,
+				31FB8F042768C09400FA8E2E /* radixsort.cpp in Sources */,
 				31B01A42275C7BF300C8E694 /* swap.cpp in Sources */,
 				31539B50275F7DE200CED899 /* heap.cpp in Sources */,
 				31B01A45275C7F1800C8E694 /* quick.cpp in Sources */,

@@ -7,14 +7,15 @@
 
 #include "writeout.hpp"
 
-void randomFill(long n, std::vector<long> &oc) {
-    std::default_random_engine generator;
+void randomFill(long n, std::vector<long> &v) {
+    std::mt19937 generator (static_cast<unsigned int>(clock()));
     std::uniform_int_distribution<long> distribution(std::numeric_limits<long>::min(),
                                                      std::numeric_limits<long>::max());
+//    std::uniform_int_distribution<long> distribution(-255, 255);
     
-    oc.clear();
-    while (oc.size() < n) {
+    v.clear();
+    while (n--) {
         long r(distribution(generator));
-        oc.emplace_back(r);
+        v.emplace_back(r);
     }
 }
