@@ -21,6 +21,7 @@
 #include "insertion.hpp"
 #include "merge.hpp"
 #include "quick.hpp"
+#include "radixc.hpp"
 #include "radixsort.hpp"
 #include "selection.hpp"
 #include "shell.hpp"
@@ -50,8 +51,14 @@ static void errorFunction(int &, lv, lv);
 static void copyVector(lv &, lv &);
 static void makeFile(std::vector<sortStruct>);
 static std::string convertMicroSeconds(long);
+static void testConvert();
 
 int main(int argc, const char * argv[]) {
+    std::locale loc (std::cout.getloc(),new my_numpunct);
+    std::cout.imbue(loc);
+    
+//    testConvert();
+    
     std::vector<sortStruct> fns;
     fns.clear();
     
@@ -60,6 +67,12 @@ int main(int argc, const char * argv[]) {
     bubbleSort.fn = bSort;
     bubbleSort.runData.clear();
     fns.emplace_back(bubbleSort);
+    
+    sortStruct stlSort;
+    stlSort.name = "CPP Default";
+    stlSort.fn = stl;
+    stlSort.runData.clear();
+    fns.emplace_back(stlSort);
 
     sortStruct heapSort;
     heapSort.name = "Heap";
@@ -85,8 +98,14 @@ int main(int argc, const char * argv[]) {
     quickSort.runData.clear();
     fns.emplace_back(quickSort);
     
+    sortStruct radixSortC;
+    radixSortC.name = "Radix";
+    radixSortC.fn = radixC;
+    radixSortC.runData.clear();
+    fns.emplace_back(radixSortC);
+    
     sortStruct radixSort;
-    radixSort.name = "Radix";
+    radixSort.name = "Radix w/STL";
     radixSort.fn = radSort;
     radixSort.runData.clear();
     fns.emplace_back(radixSort);
@@ -103,29 +122,21 @@ int main(int argc, const char * argv[]) {
     shellSort.runData.clear();
     fns.emplace_back(shellSort);
     
-    sortStruct stlSort;
-    stlSort.name = "STL";
-    stlSort.fn = stl;
-    stlSort.runData.clear();
-    fns.emplace_back(stlSort);
-    
     int completionCode(0);
-    int n0(8192);
-    int wdth(20);
-    long sampleSizeMax(128 << 13);
+    int wdth(22);
+    long ssMin(1 << 16);
+    long ssMax(4096 << 18);
+    ssMax <<= 2;
     
     lv orginalCopy;
     lv workCopy;
     lv checkCopy;
     
-    std::locale loc (std::cout.getloc(),new my_numpunct);
-    std::cout.imbue(loc);
+    std::cout << "Start: " << ssMin << "  Max: " << ssMax << '\n';
     
-    std::cout << "Start: " << n0 << "  Max: " << sampleSizeMax << '\n';
-    
-    for (long sampleSize(n0); sampleSize < sampleSizeMax; (sampleSize <<= 1)) {
-        std::cout << '\n' << formatTime(true, true) << " n: " << sampleSize
-        << " -------------\n";
+    for (long sampleSize(ssMin); sampleSize < ssMax; (sampleSize <<= 1)) {
+        std::cout << '\n' << formatTime(true, true) << " n: " << std::right
+        << std::setw(14) << sampleSize << " ----------\n";
         randomFill(sampleSize, orginalCopy);
         copyVector(checkCopy, orginalCopy);
         std::sort(checkCopy.begin(), checkCopy.end());
@@ -135,8 +146,9 @@ int main(int argc, const char * argv[]) {
             f.fn(workCopy);
             auto stop = high_resolution_clock::now();
             long duration = duration_cast<microseconds>(stop - start).count();
-            std::cout << formatTime(false, true) << std::right << std::setw(11)
-            << f.name << ": " <<std::setw(wdth) <<std::right << duration << " µs" << "\n";
+            std::cout << formatTime(false, true) << std::right << std::setw(13)
+            << f.name << ": " <<std::setw(wdth) <<std::right << duration << " µs"
+            << convertMicroSeconds(duration) << "\n";
             sortMetrics tm;
             tm.error = verify(workCopy, checkCopy);
             tm.time = duration;
@@ -179,8 +191,9 @@ static void errorFunction(int &completionCode, lv wc, lv oc) {
 
 static void copyVector(lv &dest, lv &source) {
     dest.clear();
-    while (dest.size() < source.size())
-        dest.push_back(source[dest.size()]);
+    dest = source;
+//    while (dest.size() < source.size())
+//        dest.push_back(source[dest.size()]);
 }
 
 static void makeFile(std::vector<sortStruct> v) {
@@ -201,28 +214,38 @@ static void makeFile(std::vector<sortStruct> v) {
     fst.close();
 }
 
-static std::string convertMicroSeconds(long timestamp) {
-    long milliseconds = (long) (timestamp / 1000000) % 1000;
-    long seconds = (((long) (timestamp / 1000) - milliseconds) / 1000) % 60;
-    long minutes = (((((long) (timestamp / 1000) - milliseconds) / 1000)
-                        - seconds) / 60) % 60;
-    long hours = ((((((long) (timestamp / 1000) - milliseconds) / 1000)
-                         - seconds) / 60) - minutes) / 60;
-    
+static std::string convertMicroSeconds(long tms) {
+    const long ku(1000000);
+    long fractional(tms % ku);
+    long seconds(tms / ku);
+    long minutes(seconds / 60);
+    seconds -= minutes * 60;
+    long hours(minutes / 60);
+    minutes -= hours * 60;
+
     std::stringstream sst;
-    sst << std::setfill('0');
+    sst << std::setfill(' ');
     if (hours > 0)
-        sst << hours << ":";
+        sst << (hours > 99 ? "  " : hours > 9 ? "   " : "    " ) << hours << ":";
+    else
+        sst << "    ";
     
-    if (minutes > 0)
-        sst << (hours > 0 ? "" : "   ") << std::fixed
+    sst << std::setfill('0');
+    if (minutes > 0 || hours > 0)
+        sst << (hours > 0 ? "" : minutes > 9 ? "  " : "   ") << std::fixed
         << std::setw(minutes > 9 || hours > 0 ? 2 : 1)
         << minutes << ":";
-        
-    sst << (hours == 0 && minutes == 0 ? "      " : "") << std::fixed
-    << std::setw(minutes > 0 || seconds > 9 ? 2 : 1)
-    << seconds << "." << milliseconds;
-            
-    return sst.str();
     
+    sst << (hours == 0 && minutes == 0 && seconds < 10 ? "      " : hours == 0 && minutes == 0 ? "     " : "")
+    << std::fixed
+    << std::setw(hours == 0 && minutes == 0 && seconds < 10 ? 1 : 2)
+    << seconds << "." << std::setw(6) << fractional;
+    
+    return sst.str();
+}
+
+static void testConvert() {
+    for (long i(1); i < 1000000000000; i *= 9) {
+       std::cout << std::right << std::setw(16) << i << '\t' << convertMicroSeconds(i) << '\n';
+    }
 }
