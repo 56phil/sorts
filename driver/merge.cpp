@@ -7,7 +7,7 @@
 
 #include "merge.hpp"
 
-void merge(std::vector<long> &v, std::vector<long> v1, std::vector<long> v2) {
+void merge(lv &v, lv v1, lv v2) {
     v.clear();
     auto it1(v1.begin()), it2(v2.begin());
     while (it1 != v1.end() && it2 != v2.end())
@@ -24,10 +24,10 @@ void merge(std::vector<long> &v, std::vector<long> v1, std::vector<long> v2) {
     
 }
 
-void mSort(std::vector<long> &v) {
+void mSort(lv &v) {
     if (v.size() > 1) {
-        std::vector<long> v1;
-        std::vector<long> v2;
+        lv v1;
+        lv v2;
         auto mp(v.size() >> 1);
         for (long i(0); i < mp; i++)
             v1.push_back(v[i]);

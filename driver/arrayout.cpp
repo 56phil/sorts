@@ -7,10 +7,9 @@
 
 #include "arrayout.hpp"
 
-void printArray(long *arrPtr, long *arrPtrMax) {
+void printArray(int *arrPtr, int *arrPtrMax) {
     int i(60);
-    for (long *ptr(arrPtr); ptr < arrPtrMax && i; ptr++, --i) {
-        std::cout << std::right << std::setw(24) << *ptr;
-    }
+    while (arrPtr++ < arrPtrMax && i--)
+        std::cout << std::right << std::setw(24) << *arrPtr;
     std::cout << std::endl;
 }

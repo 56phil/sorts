@@ -8,9 +8,8 @@
 #ifndef arrayout_hpp
 #define arrayout_hpp
 
-#include <fstream>
-#include <iostream>
+#include "driver.hpp"
 
-void printArray(long *, long *);
+void printArray(int *, int *);
 
 #endif /* arrayout_hpp */

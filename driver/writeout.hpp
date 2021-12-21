@@ -8,11 +8,8 @@
 #ifndef writeout_hpp
 #define writeout_hpp
 
-#include <iostream>
-#include <fstream>
-#include <limits>
-#include <random>
-#include <vector>
-void randomFill(long, std::vector<long> &);
+#include "driver.hpp"
+
+void randomFill(long, lv &);
 
 #endif /* writeout_hpp */

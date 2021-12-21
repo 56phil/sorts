@@ -15,11 +15,10 @@
 		31821A1D275B117E00F85B97 /* arrayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A17275B117E00F85B97 /* arrayout.cpp */; };
 		31821A1E275B117E00F85B97 /* writeout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31821A18275B117E00F85B97 /* writeout.cpp */; };
 		31A4E65E275BE9C9005F9792 /* shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31A4E65C275BE9C9005F9792 /* shell.cpp */; };
-		31B01A42275C7BF300C8E694 /* swap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B01A40275C7BF300C8E694 /* swap.cpp */; };
 		31B01A45275C7F1800C8E694 /* quick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B01A43275C7F1800C8E694 /* quick.cpp */; };
 		31B570A7275ED4C500BA91FC /* bubble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B570A5275ED4C500BA91FC /* bubble.cpp */; };
 		31B570AD275EE38A00BA91FC /* merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B570AC275EE38A00BA91FC /* merge.cpp */; };
-		31C70634275B06EB00F3286A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31C70633275B06EB00F3286A /* main.cpp */; };
+		31C70634275B06EB00F3286A /* driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31C70633275B06EB00F3286A /* driver.cpp */; };
 		31D57545276196D80021A4FF /* formattime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31D57543276196D80021A4FF /* formattime.cpp */; };
 		31EBB605276AEB8A0040B0EB /* radixc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB603276AEB8A0040B0EB /* radixc.cpp */; };
 		31FB8F042768C09400FA8E2E /* radixsort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31FB8F022768C09400FA8E2E /* radixsort.cpp */; };
@@ -38,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		312649B12771251100AE4F6B /* driver.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = driver.hpp; path = /Users/prh/Keepers/code/cpp/sorts/driver/driver.hpp; sourceTree = "<absolute>"; };
 		31539B4E275F7DE200CED899 /* heap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = heap.cpp; path = ../../algoritnms/heap.cpp; sourceTree = "<group>"; };
 		31539B4F275F7DE200CED899 /* heap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = heap.hpp; path = ../../algoritnms/heap.hpp; sourceTree = "<group>"; };
 		315AB89A27656A0300BE3038 /* stl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = stl.cpp; path = ../../algoritnms/stl.cpp; sourceTree = "<group>"; };
@@ -54,8 +54,6 @@
 		31821A1A275B117E00F85B97 /* writeout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = writeout.hpp; sourceTree = "<group>"; };
 		31A4E65C275BE9C9005F9792 /* shell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = shell.cpp; path = ../../algoritnms/shell.cpp; sourceTree = "<group>"; };
 		31A4E65D275BE9C9005F9792 /* shell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = shell.hpp; path = ../../algoritnms/shell.hpp; sourceTree = "<group>"; };
-		31B01A40275C7BF300C8E694 /* swap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = swap.cpp; path = ../../headers/swap.cpp; sourceTree = "<group>"; };
-		31B01A41275C7BF300C8E694 /* swap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = swap.hpp; path = ../../headers/swap.hpp; sourceTree = "<group>"; };
 		31B01A43275C7F1800C8E694 /* quick.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = quick.cpp; path = ../../algoritnms/quick.cpp; sourceTree = "<group>"; };
 		31B01A44275C7F1800C8E694 /* quick.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = quick.hpp; path = ../../algoritnms/quick.hpp; sourceTree = "<group>"; };
 		31B570A5275ED4C500BA91FC /* bubble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = bubble.cpp; path = ../../algoritnms/bubble.cpp; sourceTree = "<group>"; };
@@ -63,7 +61,7 @@
 		31B570AB275EE38000BA91FC /* merge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = merge.hpp; sourceTree = "<group>"; };
 		31B570AC275EE38A00BA91FC /* merge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = merge.cpp; sourceTree = "<group>"; };
 		31C70630275B06EB00F3286A /* driver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = driver; sourceTree = BUILT_PRODUCTS_DIR; };
-		31C70633275B06EB00F3286A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		31C70633275B06EB00F3286A /* driver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = driver.cpp; sourceTree = "<group>"; };
 		31D57543276196D80021A4FF /* formattime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = formattime.cpp; path = ../../headers/formattime.cpp; sourceTree = "<group>"; };
 		31D57544276196D80021A4FF /* formattime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = formattime.hpp; path = ../../headers/formattime.hpp; sourceTree = "<group>"; };
 		31EBB603276AEB8A0040B0EB /* radixc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = radixc.cpp; sourceTree = "<group>"; };
@@ -86,6 +84,8 @@
 		31C70627275B06EB00F3286A = {
 			isa = PBXGroup;
 			children = (
+				31C70633275B06EB00F3286A /* driver.cpp */,
+				312649B12771251100AE4F6B /* driver.hpp */,
 				31C70632275B06EB00F3286A /* driver */,
 				31C70631275B06EB00F3286A /* Products */,
 			);
@@ -112,7 +112,6 @@
 				31539B4F275F7DE200CED899 /* heap.hpp */,
 				31821A10275B0E6000F85B97 /* insertion.cpp */,
 				31821A11275B0E6000F85B97 /* insertion.hpp */,
-				31C70633275B06EB00F3286A /* main.cpp */,
 				31FB8F022768C09400FA8E2E /* radixsort.cpp */,
 				31FB8F032768C09400FA8E2E /* radixsort.hpp */,
 				31EBB603276AEB8A0040B0EB /* radixc.cpp */,
@@ -121,14 +120,12 @@
 				315AB89B27656A0300BE3038 /* stl.hpp */,
 				31B570AC275EE38A00BA91FC /* merge.cpp */,
 				31B570AB275EE38000BA91FC /* merge.hpp */,
-				316DCEBD275ECDE000F667D0 /* selection.cpp */,
-				316DCEBE275ECDE000F667D0 /* selection.hpp */,
 				31B01A43275C7F1800C8E694 /* quick.cpp */,
 				31B01A44275C7F1800C8E694 /* quick.hpp */,
+				316DCEBD275ECDE000F667D0 /* selection.cpp */,
+				316DCEBE275ECDE000F667D0 /* selection.hpp */,
 				31A4E65C275BE9C9005F9792 /* shell.cpp */,
 				31A4E65D275BE9C9005F9792 /* shell.hpp */,
-				31B01A40275C7BF300C8E694 /* swap.cpp */,
-				31B01A41275C7BF300C8E694 /* swap.hpp */,
 				31821A13275B117E00F85B97 /* verifyarray.cpp */,
 				31821A15275B117E00F85B97 /* verifyarray.hpp */,
 				31821A18275B117E00F85B97 /* writeout.cpp */,
@@ -200,11 +197,10 @@
 				31821A1B275B117E00F85B97 /* verifyarray.cpp in Sources */,
 				31821A1D275B117E00F85B97 /* arrayout.cpp in Sources */,
 				31B570AD275EE38A00BA91FC /* merge.cpp in Sources */,
-				31C70634275B06EB00F3286A /* main.cpp in Sources */,
+				31C70634275B06EB00F3286A /* driver.cpp in Sources */,
 				315AB89C27656A0300BE3038 /* stl.cpp in Sources */,
 				31EBB605276AEB8A0040B0EB /* radixc.cpp in Sources */,
 				31FB8F042768C09400FA8E2E /* radixsort.cpp in Sources */,
-				31B01A42275C7BF300C8E694 /* swap.cpp in Sources */,
 				31539B50275F7DE200CED899 /* heap.cpp in Sources */,
 				31B01A45275C7F1800C8E694 /* quick.cpp in Sources */,
 				316DCEBF275ECDE000F667D0 /* selection.cpp in Sources */,
@@ -251,6 +247,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -267,6 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/prh/Keepers/code/cpp/sorts/driver/driver.xcodeproj/**";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -315,7 +313,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;

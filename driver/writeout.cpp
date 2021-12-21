@@ -7,15 +7,15 @@
 
 #include "writeout.hpp"
 
-void randomFill(long n, std::vector<long> &v) {
-    std::mt19937 generator (static_cast<unsigned int>(clock()));
-    std::uniform_int_distribution<long> distribution(std::numeric_limits<long>::min(),
-                                                     std::numeric_limits<long>::max());
+void randomFill(long n, lv &v) {
+    std::mt19937 generator (static_cast<int>(clock()));
+    std::uniform_int_distribution<int> distribution(std::numeric_limits<int>::min(),
+                                                     std::numeric_limits<int>::max());
 //    std::uniform_int_distribution<long> distribution(-255, 255);
     
     v.clear();
     while (n--) {
-        long r(distribution(generator));
-        v.emplace_back(r);
+        int r(distribution(generator));
+        v.push_back(r);
     }
 }

@@ -8,10 +8,7 @@
 #ifndef verifyarray_hpp
 #define verifyarray_hpp
 
-#include <iostream>
-#include <vector>
-#include "arrayout.hpp"
-#include "readin.hpp"
+#include "driver.hpp"
 
-bool verify(std::vector<long>, std::vector<long>);
+bool verify(const lv, const lv);
 #endif /* verifyarray_hpp */

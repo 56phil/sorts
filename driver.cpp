@@ -5,31 +5,7 @@
 //  Created by Phil Huffman on 12/3/21.
 //
 
-#include <chrono>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <locale>
-#include <sstream>
-#include <vector>
-#include "arrayout.hpp"
-#include "formattime.hpp"
-#include "verifyarray.hpp"
-
-#include "bubble.hpp"
-#include "heap.hpp"
-#include "insertion.hpp"
-#include "merge.hpp"
-#include "quick.hpp"
-#include "radixc.hpp"
-#include "radixsort.hpp"
-#include "selection.hpp"
-#include "shell.hpp"
-#include "stl.hpp"
-
-using namespace std::chrono;
-
-typedef std::vector<long> lv;
+#include "driver.hpp"
 
 struct sortMetrics {
     bool error;
@@ -39,7 +15,7 @@ struct sortMetrics {
 
 struct sortStruct {
     std::string name;
-    std::function<void(std::vector<long> &)> fn;
+    std::function<void(lv &)> fn;
     std::vector<sortMetrics> runData;
 };
 
@@ -57,7 +33,7 @@ int main(int argc, const char * argv[]) {
     std::locale loc (std::cout.getloc(),new my_numpunct);
     std::cout.imbue(loc);
     
-//    testConvert();
+    testConvert();
     
     std::vector<sortStruct> fns;
     fns.clear();
@@ -124,15 +100,15 @@ int main(int argc, const char * argv[]) {
     
     int completionCode(0);
     int wdth(22);
-    long ssMin(1 << 16);
-    long ssMax(4096 << 18);
-    ssMax <<= 2;
+    long ssMin(1 << 8);
+    long ssMax(1 << 17);
+//    ssMax <<= 2;
     
     lv orginalCopy;
     lv workCopy;
     lv checkCopy;
     
-    std::cout << "Start: " << ssMin << "  Max: " << ssMax << '\n';
+    std::cout << "\nStart: " << ssMin << "  Max: " << ssMax << '\n';
     
     for (long sampleSize(ssMin); sampleSize < ssMax; (sampleSize <<= 1)) {
         std::cout << '\n' << formatTime(true, true) << " n: " << std::right
@@ -192,8 +168,6 @@ static void errorFunction(int &completionCode, lv wc, lv oc) {
 static void copyVector(lv &dest, lv &source) {
     dest.clear();
     dest = source;
-//    while (dest.size() < source.size())
-//        dest.push_back(source[dest.size()]);
 }
 
 static void makeFile(std::vector<sortStruct> v) {
@@ -245,7 +219,7 @@ static std::string convertMicroSeconds(long tms) {
 }
 
 static void testConvert() {
-    for (long i(1); i < 1000000000000; i *= 9) {
+    for (long i(1); i < 1000000000000; i *= 13 ) {
        std::cout << std::right << std::setw(16) << i << '\t' << convertMicroSeconds(i) << '\n';
     }
 }

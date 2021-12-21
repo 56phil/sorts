@@ -7,28 +7,39 @@
 
 #include "radixc.hpp"
 
-void radixS(long *arr1, const long n) {
+void doNegs(int *arr, int *wrk, const long n, const unsigned long nBytes) {
+    memcpy(wrk, arr, nBytes);
+    const int *arrEnd(arr + n);
+    const int *wrkEnd(wrk + n);
+    int *wPtr(wrk);
+    while (*wPtr >= 0)
+        wPtr++;
+    while (wPtr < wrkEnd)
+        *arr++ = *wPtr++;
+    while (arr < arrEnd)
+        *arr++ = *wrk++;
+}
+
+void radixS(int *arr1, const long n) {
     const int shiftSize(8);
     const int ctrsSize(256);
-    const int nBytes(static_cast<int>(n) * sizeof(long));
-    const int shiftAmountMax(sizeof(long) * sizeof(long));
+    const unsigned long nBytes(n * sizeof(int));
+    const int shiftAmountMax(32);
     const int mask(0xff);
     int shiftAmount(0);
     int ctrs[ctrsSize];
-    long *oPtr(arr1);
-    long *arr2(new long[n]);
-    long *kt(arr2);
+    int *oPtr(arr1);
+    int *arr2(new int[n]);
+    int *kt(arr2);
     while (shiftAmount < shiftAmountMax) {
         for (auto i(0); i < ctrsSize; i++)
             ctrs[i] = 0;
         for (auto i(0); i < n; i++)
-            ctrs[(arr1[i] >> shiftAmount) & mask]++;
+            ctrs[getIndex(arr1[i], shiftAmount, mask)]++;
         for (auto i(1); i < ctrsSize; i++)
             ctrs[i] += ctrs[i - 1];
-        for (auto i(n - 1); i >= 0; i--) {
-            auto ndx((arr1[i] >> shiftAmount) & mask);
-            arr2[--ctrs[ndx]] = arr1[i];
-        }
+        for (auto i(n - 1); i >= 0; i--)
+            arr2[--ctrs[getIndex(arr1[i], shiftAmount, mask)]] = arr1[i];
         std::swap(arr1, arr2);
         shiftAmount += shiftSize;
     }
@@ -42,22 +53,9 @@ void radixS(long *arr1, const long n) {
     delete [] kt;
 }
 
-void doNegs(long *arr, long *wrk, const long n, const long nBytes) {
-    memcpy(wrk, arr, nBytes);
-    const long *arrEnd(arr + n);
-    const long *wrkEnd(wrk + n);
-    long *wPtr(wrk);
-    while (*wPtr >= 0)
-        wPtr++;
-    while (wPtr < wrkEnd)
-        *arr++ = *wPtr++;
-    while (arr < arrEnd)
-        *arr++ = *wrk++;
-}
-
-void radixC(std::vector<long> &v) {
-    long *a(new long [v.size()]);
-    long *b(a);
+void radixC(lv &v) {
+    auto *a(new int [v.size()]);
+    auto *b(a);
     for (auto w : v) {
         *b++ = w;
     }
@@ -67,4 +65,8 @@ void radixC(std::vector<long> &v) {
     for (auto i(0); i < v.size(); i++)
         v[i] = a[i];
     delete [] a;
+}
+
+long getIndex(const int n, const int sa, const int mask) {
+    return ((n >> sa) & mask);
 }

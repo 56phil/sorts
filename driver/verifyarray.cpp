@@ -7,7 +7,7 @@
 
 #include "verifyarray.hpp"
 
-bool verify(std::vector<long>wc, std::vector<long>oc) {
+bool verify(const lv wc, const lv oc) {
     auto itw(wc.begin());
     auto ito(oc.begin());
     while (itw != wc.end() && ito != oc.end()) {

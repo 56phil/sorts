@@ -8,11 +8,11 @@
 #ifndef radixc_hpp
 #define radixc_hpp
 
-#include <stdio.h>
-#include <vector>
+#include "driver.hpp"
 
-void radixC(std::vector<long> &);
-void radixS(long *, long);
-void doNegs(long *, long *, const long, const long);
+long getIndex(const int, const int, const int);
+void radixC(lv &);
+void radixS(int *, long);
+void doNegs(int *, int *, const long, const unsigned  long);
 
 #endif /* radixc_hpp */

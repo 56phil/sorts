@@ -8,11 +8,9 @@
 #ifndef merge_hpp
 #define merge_hpp
 
-#include <cstring>
-#include <vector>
+#include "driver.hpp"
 
-//static void merge(long *, long *, long *);
-void mSort(std::vector<long>&);
-void merge(std::vector<long>&, std::vector<long>, std::vector<long>);
+void mSort(lv &);
+void merge(lv &, lv, lv);
 
 #endif /* merge_hpp */
